@@ -1,0 +1,86 @@
+@import "../../../scss/variables";
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+.heading {
+  width: 100%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  padding: .2rem 0rem;
+  
+  .container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+  }
+
+  .logo {
+    color: #fff;
+    font-weight: 800;
+    font-size: 2.5rem;
+    font-family: "Lobster";
+  }
+  ul {
+    width: 60%;
+    text-decoration: none;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    li {
+      .link {
+        color: #ffff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        &:hover {
+          color: #ffa903;
+          transition: 0.2s ease-in-out;
+          border-bottom: 1px solid #ffc107;
+        }
+      }
+      .active_link {
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffa903;
+        // border-bottom: 1px solid #ffc107;
+      }
+    }
+    .registerbtn {
+      border: none;
+      font-size: 16px;
+      padding: 12px 25px;
+      background-color: #fff;
+      font-weight: 600;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #000;
+      &:hover {
+        background: #ffa903;
+        color: #000;
+      }
+    }
+    .signinbtn {
+      border: none;
+      font-size: 16px;
+      padding: 12px 25px;
+      background-color: #ffa903;
+      font-weight: 600;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #000;
+      &:hover {
+        background: #fff;
+        color: #000;
+      }
+    }
+  }
+}
