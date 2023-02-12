@@ -5,18 +5,24 @@ import { Carousel } from "react-responsive-carousel";
 import Image1 from "../sliderImage/image_1.jpg";
 import Image2 from "../sliderImage/image_2.jpg";
 import { Link } from "react-router-dom";
-import { useSpring, animated } from "@react-spring/web";
+import { BiBus, BiTrain, BiCheckCircle } from "react-icons/bi";
 
+const smallDivDetails = [
+  {
+    id: 1,
+    name: "Bus Ticket",
+  },
+  {
+    id: 2,
+    name: "Train Ticket",
+  },
+  {
+    id: 3,
+    name: "Check In",
+  },
+];
 const Hero = () => {
-  const [flip, setFlip] = useState(false);
-  const spring = useSpring({
-    to: { opacity: 1 },
-    from: { opacity: 0 },
-    reset: true,
-    reverse: true,
-    delay: 200,
-    onRest: () => setFlip(!flip),
-  });
+  const [active, setActive] = useState(1);
   return (
     <React.Fragment>
       <div className={styles.hero}>
@@ -70,7 +76,29 @@ const Hero = () => {
           </div>
         </div>
 
-        <div style={{ height: "100vh" }}></div>
+        <div className={styles.small_details}>
+          <div className={styles.sub_detail}>
+            {smallDivDetails.map((detail) => (
+              <div
+                onClick={() => setActive(detail.id)}
+                key={detail.id}
+                className={`${styles.sub_detaildiv} ${
+                  active === detail.id ? styles.active_subDetaildiv : ""
+                }`}
+              >
+                {detail.id === 1 && <BiBus className={styles.sub_detailIcon} />}
+                {detail.id === 2 && (
+                  <BiTrain className={styles.sub_detailIcon} />
+                )}
+                {detail.id === 3 && (
+                  <BiCheckCircle className={styles.sub_detailIcon} />
+                )}
+                {detail.name}
+              </div>
+            ))}
+          </div>
+
+        </div>
       </div>
     </React.Fragment>
   );
