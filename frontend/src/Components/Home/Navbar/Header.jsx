@@ -25,8 +25,8 @@ const navItems = [
   },
   {
     id: 5,
-    title: "Contract",
-    link: "/",
+    title: "Contact",
+    link: "/contact",
   },
   {
     id: 6,
