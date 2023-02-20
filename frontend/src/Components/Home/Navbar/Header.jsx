@@ -38,7 +38,7 @@ const Header = () => {
   const [navItem, setNavItem] = useState(1);
   const [scroll, setScroll] = useState(false);
   const changeHeight = () => {
-    if (window.scrollY >= 200) {
+    if (window.scrollY >= 150) {
       setScroll(true);
     } else {
       setScroll(false);
@@ -54,7 +54,7 @@ const Header = () => {
             ? {
                 backgroundColor: "#212529",
                 position: "fixed",
-                transition: ".5s ease-in-out",
+                transition: "1s ease-in-out",
               }
             : { backgroud: "transparent" }
         }

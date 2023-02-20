@@ -1,0 +1,108 @@
+.footer_main {
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #212529;
+  .footer_subdiv {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .sub_leftdiv {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      p {
+        color: #fff;
+        font-size: 1rem;
+        padding: 0rem 0.5rem;
+      }
+      .logo {
+        color: #fff;
+        font-weight: 800;
+        font-size: 2.5rem;
+        font-family: "Lobster";
+      }
+    }
+    .sub_middlediv {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      .top {
+        color: #fff;
+        font-size: 1.4rem;
+        font-weight: bold;
+        &:hover {
+          color: #ffa903;
+        }
+      }
+      ul {
+        list-style: none;
+        margin-top: 3rem;
+        li {
+          color: #fff;
+          font-size: 1rem;
+          margin-top: 0.5rem;
+          cursor: pointer;
+          &:hover {
+            color: #ffa903;
+            transition: 0.2s ease-in-out;
+            transform: scale(1.2);
+            transition: 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+    .sub_rightdiv {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .top {
+        color: #fff;
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin-top: 2.5rem;
+        &:hover {
+          color: #ffa903;
+        }
+      }
+      ul {
+        list-style: none;
+        li {
+          color: #ffa903;
+          font-size: 1rem;
+          margin-top: 0.5rem;
+          cursor: pointer;
+          &:hover {
+            transition: 0.2s ease-in-out;
+            transform: scale(1.2);
+            transition: 0.3s ease-in-out;
+          }
+        }
+      }
+      .socialLink {
+        margin-top: 0.2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        .icons {
+          color: #fff;
+          font-size: 1.4rem;
+          &:hover {
+            color: #ffa903;
+            transition: 0.2s ease-in-out;
+            transform: scale(1.4);
+            transition: 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
