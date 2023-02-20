@@ -1,0 +1,52 @@
+.profile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  .imgDiv {
+    height: 40vh;
+    width: 100%;
+    img {
+      width: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100%;
+    }
+  }
+  .make_opacity {
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    background-color: #003580;
+    opacity: 0.75;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .profileDetails {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .profile_subdiv {
+      width: 80%;
+      display: flex;
+      justify-content: center;
+
+      .profile_right {
+        display: flex;
+        flex-direction: column;
+        .input_field{
+            display: flex;
+            flex-direction: column;
+        }
+      }
+    }
+  }
+}

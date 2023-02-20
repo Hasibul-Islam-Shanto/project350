@@ -29,9 +29,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    h1::after {
-      content: "";
-    }
   }
 
   .write_message {

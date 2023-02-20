@@ -10,8 +10,8 @@
   z-index: 99;
   position: absolute;
   top: 0;
-  padding: .2rem 0rem;
-  
+  padding: 0.2rem 0rem;
+
   .container {
     width: 80%;
     display: flex;
@@ -33,7 +33,19 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-
+    .profilePic {
+      // height: 40px;
+      // width: 40px;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      border-radius: 50%;
+      img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+      }
+    }
     li {
       .link {
         color: #ffff;
@@ -54,21 +66,7 @@
         // border-bottom: 1px solid #ffc107;
       }
     }
-    .registerbtn {
-      border: none;
-      font-size: 16px;
-      padding: 12px 25px;
-      background-color: #fff;
-      font-weight: 600;
-      border-radius: 3px;
-      text-decoration: none;
-      color: #000;
-      &:hover {
-        background: #ffa903;
-        color: #000;
-      }
-    }
-    .signinbtn {
+    .connectbtn {
       border: none;
       font-size: 16px;
       padding: 12px 25px;
@@ -77,6 +75,7 @@
       border-radius: 3px;
       text-decoration: none;
       color: #000;
+      cursor: pointer;
       &:hover {
         background: #fff;
         color: #000;

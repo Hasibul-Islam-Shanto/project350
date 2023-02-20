@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./header.module.scss";
 import { Link } from "react-router-dom";
+import profilepic from "./profilepic.jpg";
 
 const navItems = [
   {
@@ -32,6 +33,11 @@ const navItems = [
     id: 6,
     title: "Tracking",
     link: "/",
+  },
+  {
+    id: 7,
+    title: "Profile",
+    link: "/profile",
   },
 ];
 const Header = () => {
@@ -74,13 +80,7 @@ const Header = () => {
                 </Link>
               </li>
             ))}
-
-            <Link to="/" className={styles.registerbtn}>
-              Register
-            </Link>
-            <Link to="/" className={styles.signinbtn}>
-              Signin
-            </Link>
+            <button className={styles.connectbtn}>Connect</button>
           </ul>
         </div>
       </div>

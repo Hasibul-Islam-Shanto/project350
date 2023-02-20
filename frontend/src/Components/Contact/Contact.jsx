@@ -1,5 +1,4 @@
 import React from "react";
-import contactImg from "./contact.jpg";
 import styles from "./contact.module.scss";
 
 const Contact = () => {
@@ -7,7 +6,7 @@ const Contact = () => {
     <React.Fragment>
       <div className={styles.contact}>
         <div className={styles.imgDiv}>
-          <img src={contactImg} alt="contact" />
+          <img src="/head.jpg" alt="contact" />
         </div>
 
         <div className={styles.make_opacity}>
