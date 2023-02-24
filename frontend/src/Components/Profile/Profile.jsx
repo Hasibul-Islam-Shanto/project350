@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import EditModal from "./EditModal";
 import styles from "./profile.module.scss";
 const Profile = () => {
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [profileData, setProfileData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
   return (
     <React.Fragment>
       <div className={styles.profile}>
@@ -16,26 +23,46 @@ const Profile = () => {
         <div className={styles.profileDetails}>
           <div className={styles.profile_subdiv}>
             <div className={styles.profile_left}>
-              <img src="" alt="" />
-              <input type="file" />
+              <img
+                src="/profile.jpg"
+                alt="profile"
+                className={styles.profile_img}
+              />
             </div>
             <div className={styles.profile_right}>
-              <label className={styles.input_field}>
-                <span>Name</span>
-                <input type="text" />
-              </label>
-              <label className={styles.input_field}>
-                <span>Email</span>
-                <input type="text" />
-              </label>
-              <label className={styles.input_field}>
-                <span>Address</span>
-                <input type="text" />
-              </label>
+              <div className={styles.profile_data}>
+                <h3>Account :</h3>
+                <p>123456789</p>
+              </div>
+              <div className={styles.profile_data}>
+                <h3>Name :</h3>
+                <p>Md Hasibul Islam </p>
+              </div>
+              <div className={styles.profile_data}>
+                <h3>Email :</h3>
+                <p>mdhasibulislam895@gmail.com</p>
+              </div>
+              <div className={styles.profile_data}>
+                <h3>Phone :</h3>
+                <p>01785303538</p>
+              </div>
+              <button
+                onClick={() => setOpenEditModal(!openEditModal)}
+                className={styles.edit_btn}
+              >
+                Edit profile
+              </button>
             </div>
           </div>
         </div>
       </div>
+      {openEditModal && (
+        <EditModal
+          profileData={profileData}
+          setProfileData={setProfileData}
+          setOpenEditModal={setOpenEditModal}
+        />
+      )}
     </React.Fragment>
   );
 };

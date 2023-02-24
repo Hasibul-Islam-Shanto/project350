@@ -26,16 +26,11 @@ const navItems = [
   },
   {
     id: 5,
-    title: "Contact",
-    link: "/contact",
-  },
-  {
-    id: 6,
     title: "Tracking",
     link: "/",
   },
   {
-    id: 7,
+    id: 6,
     title: "Profile",
     link: "/profile",
   },
@@ -43,6 +38,7 @@ const navItems = [
 const Header = () => {
   const [navItem, setNavItem] = useState(1);
   const [scroll, setScroll] = useState(false);
+
   const changeHeight = () => {
     if (window.scrollY >= 150) {
       setScroll(true);
@@ -69,7 +65,12 @@ const Header = () => {
           <span className={styles.logo}>Three50</span>
           <ul>
             {navItems.map((nav) => (
-              <li key={nav.id} onClick={() => setNavItem(nav.id)}>
+              <li
+                key={nav.id}
+                onClick={() => {
+                  setNavItem(nav.id);
+                }}
+              >
                 <Link
                   className={
                     navItem === nav.id ? styles.active_link : styles.link
