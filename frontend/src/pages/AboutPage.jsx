@@ -1,9 +1,10 @@
 import React from "react";
+import About from '../Components/About/About'
 
 const AboutPage = () => {
   return (
     <React.Fragment>
-      <h1>This is Aboutpage</h1>
+      <About/>
     </React.Fragment>
   );
 };
