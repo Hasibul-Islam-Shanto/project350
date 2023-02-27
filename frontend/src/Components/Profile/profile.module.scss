@@ -5,6 +5,17 @@
   align-items: center;
   margin-bottom: 2rem;
   font-family: "Roboto";
+  .account_div {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 1.5rem;
+      color: #6a2e4d;
+    }
+  }
   .imgDiv {
     height: 40vh;
     width: 100%;

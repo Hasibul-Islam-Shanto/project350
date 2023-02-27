@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import EditModal from "./EditModal";
 import styles from "./profile.module.scss";
+import { useContext } from "react";
+import { TicketingContext } from "../../Context/TicketingContext";
+
 const Profile = () => {
+  const { account } = useContext(TicketingContext);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [profileData, setProfileData] = useState({
     name: "",
@@ -20,7 +24,13 @@ const Profile = () => {
           </h1>
         </div>
 
-        <div className={styles.profileDetails}>
+        <div className={styles.account_div}>
+          <p>
+            Account : <span>{account}</span>
+          </p>
+        </div>
+
+        {/* <div className={styles.profileDetails}>
           <div className={styles.profile_subdiv}>
             <div className={styles.profile_left}>
               <img
@@ -36,15 +46,15 @@ const Profile = () => {
               </div>
               <div className={styles.profile_data}>
                 <h3>Name :</h3>
-                <p>Md Hasibul Islam </p>
+                <p>{profileData.name} </p>
               </div>
               <div className={styles.profile_data}>
                 <h3>Email :</h3>
-                <p>mdhasibulislam895@gmail.com</p>
+                <p>{profileData.email}</p>
               </div>
               <div className={styles.profile_data}>
                 <h3>Phone :</h3>
-                <p>01785303538</p>
+                <p>{profileData.phone}</p>
               </div>
               <button
                 onClick={() => setOpenEditModal(!openEditModal)}
@@ -54,7 +64,7 @@ const Profile = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       {openEditModal && (
         <EditModal

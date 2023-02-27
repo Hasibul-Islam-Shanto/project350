@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from "./header.module.scss";
 import { Link } from "react-router-dom";
-import profilepic from "./profilepic.jpg";
+import { useContext } from "react";
+import { TicketingContext } from "../../../Context/TicketingContext";
 
 const navItems = [
   {
@@ -17,25 +18,26 @@ const navItems = [
   {
     id: 3,
     title: "Booking",
-    link: "/",
+    link: "/booking",
   },
   {
     id: 4,
     title: "Transaction",
     link: "/",
   },
+  // {
+  //   id: 5,
+  //   title: "Tracking",
+  //   link: "/",
+  // },
   {
     id: 5,
-    title: "Tracking",
-    link: "/",
-  },
-  {
-    id: 6,
     title: "Profile",
     link: "/profile",
   },
 ];
 const Header = () => {
+  const { account, connectMetaMask } = useContext(TicketingContext);
   const [navItem, setNavItem] = useState(1);
   const [scroll, setScroll] = useState(false);
 
@@ -81,7 +83,11 @@ const Header = () => {
                 </Link>
               </li>
             ))}
-            <button className={styles.connectbtn}>Connect</button>
+            {!account && (
+              <button onClick={connectMetaMask} className={styles.connectbtn}>
+                Connect
+              </button>
+            )}
           </ul>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./edit.module.scss";
 import { MdClear } from "react-icons/md";
+import { CreateProfile } from "../../Api/Api";
 
 const EditModal = ({ setOpenEditModal, profileData, setProfileData }) => {
   const onvalueChange = (event) => {
@@ -11,8 +12,15 @@ const EditModal = ({ setOpenEditModal, profileData, setProfileData }) => {
     });
   };
 
-  const editProfile = () => {
-    console.log(profileData);
+  const editProfile = async () => {
+    const res = await CreateProfile(profileData);
+    console.log(res);
+    setProfileData({
+      name: "",
+      email: "",
+      phone: "",
+    });
+    setOpenEditModal(false);
   };
   return (
     <React.Fragment>
