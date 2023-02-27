@@ -1,0 +1,72 @@
+.booking_main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-family: "Roboto";
+  .imgDiv {
+    height: 40vh;
+    width: 100%;
+    img {
+      width: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100%;
+    }
+  }
+  .make_opacity {
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    background-color: #003580;
+    opacity: 0.75;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .sub_container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    .btn_container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .btn_div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding: 15px 10px;
+        color: #622243;
+        font-family: "Roboto";
+        background-color: #fff;
+        span {
+          margin-left: 0.2rem;
+        }
+      }
+      .active_btn_div {
+        background-color: #622243;
+        color: #fff;
+        transition: 0.8s ease-in-out;
+      }
+    }
+  }
+}

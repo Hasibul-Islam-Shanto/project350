@@ -71,7 +71,7 @@ const Hero = () => {
               </p>
             </div>
             <Link to="/" className={styles.signinregbtn}>
-              Sign In/Register
+             Connect
             </Link>
           </div>
         </div>
