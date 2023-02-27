@@ -12,7 +12,6 @@ contract Ticketing {
    uint price;
    uint ticketCount;  //1 sec  0.5 sec
    uint ticketRemain;
-   uint vehicleNumber;
  }
 
  struct Transaction {
@@ -32,11 +31,11 @@ contract Ticketing {
      owner = payable(msg.sender);
  }
  
- function createEvent(string memory brandName, string memory starting, string memory destination, uint date, uint price, uint ticketCount, uint vehicleNumber) external{
+ function createEvent(string memory brandName, string memory starting, string memory destination, uint date, uint price, uint ticketCount) external{
    require(date>block.timestamp,"You can organize event for future date");
    require(ticketCount>0,"You can organize event only if you create more than 0 tickets");
 
-   events.push(Event(msg.sender, brandName, starting, destination, date, price, ticketCount, ticketCount, vehicleNumber));
+   events.push(Event(msg.sender, brandName, starting, destination, date, price, ticketCount, ticketCount));
  }
 
  function buyTicket(uint id, uint quantity) external payable {

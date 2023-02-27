@@ -6,7 +6,7 @@ const { ethereum } = window;
 
 // Create contract for accessing in the abi file.....
 const createEthereumContract = () => {
-  const contractAddress = "0x7BA1f8206df940a471Aae3283D98674345eb92C4";
+  const contractAddress = "0xc47E264DF1bd2bD1365b364A688d6568ca11F35f";
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
   const transactionsContract = new ethers.Contract(
@@ -18,6 +18,7 @@ const createEthereumContract = () => {
 
   return transactionsContract;
 };
+
 const TicketingProvider = ({ children }) => {
   const [account, setAccount] = useState();
   // connnection metamask.....
@@ -36,6 +37,41 @@ const TicketingProvider = ({ children }) => {
     }
   };
 
+  // Buy tickets
+  const buyTickets = async({id, quantity}) => {
+    const GetContract = createEthereumContract();
+    await GetContract.buyTicket(id, quantity);
+  }
+
+  // create tickets
+  const createTickets = async ({
+    brandName,
+    startingPoint,
+    destination,
+    date,
+    price,
+    ticketCount,
+  }) => {
+    console.log(
+      brandName,
+      startingPoint,
+      destination,
+      date,
+      price,
+      ticketCount
+    );
+    const conDate = new Date(date);
+    const GetContract = createEthereumContract();
+    await GetContract.createEvent(
+      brandName,
+      startingPoint,
+      destination,
+      conDate.getTime(),
+      price,
+      ticketCount
+    );
+    getAllEvents();
+  };
   // get all the transactions...
   const getAllTransactions = async () => {
     const GetContract = createEthereumContract();
@@ -43,9 +79,16 @@ const TicketingProvider = ({ children }) => {
     console.log(res);
   };
 
+  const getAllEvents = async () => {
+    const GetContract = createEthereumContract();
+    const res = await GetContract.getEvents();
+    console.log(res);
+  };
+
   useEffect(() => {
     createEthereumContract();
-    getAllTransactions()
+    getAllEvents();
+    getAllTransactions();
   }, []);
 
   return (
@@ -53,6 +96,8 @@ const TicketingProvider = ({ children }) => {
       value={{
         account,
         connectMetaMask,
+        createTickets,
+        getAllEvents,
       }}
     >
       {children}

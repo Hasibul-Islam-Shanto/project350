@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import styles from "./ticketadd.module.scss";
+import { useContext } from "react";
+import { TicketingContext } from "../../../Context/TicketingContext";
 
 // brand name ,starting point, destination, date, price, ticket count, vehicle number
 
 const TicketAdd = () => {
+  const {createTickets} = useContext(TicketingContext);
   const [addTickets, setAddTickets] = useState({
     brandName: "",
     startingPoint: "",
     destination: "",
     date: "",
-    price: "",
-    ticketCount: "",
-    vehicleNumber: "",
+    price: 0,
+    ticketCount: 0,
   });
 
   const onvalueChange = (event) => {
@@ -23,7 +25,7 @@ const TicketAdd = () => {
   };
 
   const addTicket = () => {
-    console.log(addTickets);
+    createTickets(addTickets);
   };
   return (
     <React.Fragment>
@@ -84,16 +86,6 @@ const TicketAdd = () => {
             type="text"
             name="ticketCount"
             value={addTickets.ticketCount}
-            onChange={onvalueChange}
-            className={styles.edit_input}
-          />
-        </label>
-        <label className={styles.edit_ele}>
-          <span className={styles.input_name}>Vehicle number</span>
-          <input
-            type="text"
-            name="vehicleNumber"
-            value={addTickets.vehicleNumber}
             onChange={onvalueChange}
             className={styles.edit_input}
           />
