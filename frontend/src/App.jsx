@@ -7,6 +7,7 @@ import Header from "./Components/Home/Navbar/Header";
 import Contact from "./Components/Contact/Contact";
 import Footer from "./Components/Footer/Footer";
 import Profile from "./Components/Profile/Profile";
+import Tracking from "./Components/Tracking/Tracking"
 import BookingPage from "./pages/BookingPage";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/booking" element={<BookingPage />} />
+        <Route path="/tracking" element={<Tracking />} />
       </Routes>
       <Footer />
     </React.Fragment>

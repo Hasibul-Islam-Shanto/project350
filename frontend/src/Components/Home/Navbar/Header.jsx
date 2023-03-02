@@ -25,13 +25,13 @@ const navItems = [
     title: "Transaction",
     link: "/",
   },
-  // {
-  //   id: 5,
-  //   title: "Tracking",
-  //   link: "/",
-  // },
   {
     id: 5,
+    title: "Tracking",
+    link: "/tracking",
+  },
+  {
+    id: 6,
     title: "Profile",
     link: "/profile",
   },
