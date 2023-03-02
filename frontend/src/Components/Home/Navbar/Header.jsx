@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./header.module.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { TicketingContext } from "../../../Context/TicketingContext";
 
@@ -13,7 +13,7 @@ const navItems = [
   {
     id: 2,
     title: "About",
-    link: "/",
+    link: "/about",
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ const navItems = [
   {
     id: 4,
     title: "Transaction",
-    link: "/",
+    link: "/transaction",
   },
   {
     id: 5,
@@ -38,7 +38,6 @@ const navItems = [
 ];
 const Header = () => {
   const { account, connectMetaMask } = useContext(TicketingContext);
-  const [navItem, setNavItem] = useState(1);
   const [scroll, setScroll] = useState(false);
 
   const changeHeight = () => {
@@ -67,20 +66,15 @@ const Header = () => {
           <span className={styles.logo}>Three50</span>
           <ul>
             {navItems.map((nav) => (
-              <li
-                key={nav.id}
-                onClick={() => {
-                  setNavItem(nav.id);
-                }}
-              >
-                <Link
-                  className={
-                    navItem === nav.id ? styles.active_link : styles.link
+              <li key={nav.id}>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? styles.active_link : styles.link
                   }
                   to={nav.link}
                 >
                   {nav.title}
-                </Link>
+                </NavLink>
               </li>
             ))}
             {!account && (

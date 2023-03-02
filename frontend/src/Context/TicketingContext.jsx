@@ -6,7 +6,7 @@ const { ethereum } = window;
 
 // Create contract for accessing in the abi file.....
 const createEthereumContract = () => {
-  const contractAddress = "0xc47E264DF1bd2bD1365b364A688d6568ca11F35f";
+  const contractAddress = "0xD4b3094c643887bc41226EBEdC418271b60B69Fb";
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
   const transactionsContract = new ethers.Contract(
@@ -21,6 +21,9 @@ const createEthereumContract = () => {
 
 const TicketingProvider = ({ children }) => {
   const [account, setAccount] = useState();
+  const [allTickets, setAllTickets] = useState([]);
+  const [allTransactions, setAllTransactions] = useState([]);
+
   // connnection metamask.....
   const connectMetaMask = async () => {
     try {
@@ -38,10 +41,30 @@ const TicketingProvider = ({ children }) => {
   };
 
   // Buy tickets
-  const buyTickets = async({id, quantity}) => {
+  const buyTickets = async (data) => {
+    console.log(data);
+    const { id, organizer, numberOfTicket, amount } = data;
     const GetContract = createEthereumContract();
-    await GetContract.buyTicket(id, quantity);
-  }
+    const parsedAmount = ethers.utils.parseEther(amount);
+
+    await ethereum.request({
+      method: "eth_sendTransaction",
+      params: [
+        {
+          from: account,
+          to: organizer,
+          gas: "0x5208",
+          value: parsedAmount._hex,
+        },
+      ],
+    });
+    const buyTransaction = await GetContract.buyTicket(
+      id,
+      numberOfTicket,
+      amount
+    );
+    await buyTransaction.wait();
+  };
 
   // create tickets
   const createTickets = async ({
@@ -62,7 +85,7 @@ const TicketingProvider = ({ children }) => {
     );
     const conDate = new Date(date);
     const GetContract = createEthereumContract();
-    await GetContract.createEvent(
+    const AddEvent = await GetContract.createEvent(
       brandName,
       startingPoint,
       destination,
@@ -70,24 +93,27 @@ const TicketingProvider = ({ children }) => {
       price,
       ticketCount
     );
-    getAllEvents();
+    await AddEvent.wait();
   };
   // get all the transactions...
   const getAllTransactions = async () => {
     const GetContract = createEthereumContract();
     const res = await GetContract.getTransactions();
     console.log(res);
+    setAllTransactions(res);
   };
 
   const getAllEvents = async () => {
     const GetContract = createEthereumContract();
     const res = await GetContract.getEvents();
+    setAllTickets(res);
     console.log(res);
   };
 
   useEffect(() => {
-    createEthereumContract();
-    getAllEvents();
+    connectMetaMask();
+    //   createEthereumContract();
+    //   getAllEvents();
     getAllTransactions();
   }, []);
 
@@ -98,6 +124,10 @@ const TicketingProvider = ({ children }) => {
         connectMetaMask,
         createTickets,
         getAllEvents,
+        allTickets,
+        buyTickets,
+        allTransactions,
+        getAllTransactions,
       }}
     >
       {children}

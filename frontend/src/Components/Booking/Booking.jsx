@@ -1,13 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./booking.module.scss";
 import { BsPlusCircle } from "react-icons/bs";
-import { BiMinusCircle } from "react-icons/bi";
+import { useContext } from "react";
+import { TicketingContext } from "../../Context/TicketingContext";
+import { ImTicket } from "react-icons/im";
+import Modal from "../Modal/Modal";
 import TicketAdd from "./TicketAdd/TicketAdd";
 import TicketBuy from "./TicketBuy/TicketBuy";
+
 const Booking = () => {
-  const [activeBtn, setActiveBtn] = useState("addticket");
+  const { allTickets, getAllEvents } = useContext(TicketingContext);
+  const [addTicketModal, setAddTicketModal] = useState(false);
+  const [buyTicketModal, setBuyTicketModal] = useState(false);
+  const [id, setId] = useState();
+  const [brandInfo, setBrandInfo] = useState({});
+  console.log(allTickets);
+  useEffect(() => {
+    getAllEvents();
+  }, []);
   return (
     <React.Fragment>
+      {addTicketModal && (
+        <Modal>
+          <TicketAdd setAddTicketModal={setAddTicketModal} />
+        </Modal>
+      )}
+      {buyTicketModal && (
+        <Modal>
+          <TicketBuy
+            setBuyTicketModal={setBuyTicketModal}
+            brandInfo={brandInfo}
+            id={id}
+          />
+        </Modal>
+      )}
       <div className={styles.booking_main}>
         <div className={styles.imgDiv}>
           <img src="/head.jpg" alt="contact" />
@@ -17,30 +43,64 @@ const Booking = () => {
             Booking
           </h1>
         </div>
-        <div className={styles.container}>
-          <div className={styles.sub_container}>
+
+        <div className={styles.alltickets_div}>
+          <div className={styles.conainter}>
             <div className={styles.btn_container}>
-              <div
-                onClick={() => setActiveBtn("addticket")}
-                className={`${styles.btn_div} ${
-                  activeBtn === "addticket" ? styles.active_btn_div : ""
-                }`}
+              <button
+                onClick={() => setAddTicketModal(!addTicketModal)}
+                className={styles.btn_div}
               >
                 <BsPlusCircle />
                 <span> Add Tickets</span>
-              </div>
-              <div
-                onClick={() => setActiveBtn("buyticket")}
-                className={`${styles.btn_div} ${
-                  activeBtn === "buyticket" ? styles.active_btn_div : ""
-                }`}
-              >
-                <BiMinusCircle />
-                <span>Buy Tickets</span>
-              </div>
+              </button>
             </div>
-            {activeBtn === "addticket" && <TicketAdd />}
-            {activeBtn === "buyticket" && <TicketBuy />}
+          </div>
+
+          <div
+            className={`${styles.alltickets_container} ${
+              allTickets.length > 0 ? "" : styles.alltickets_container_active
+            }`}
+          >
+            {allTickets.map((ticket, index) => (
+              <div className={styles.allticket_element} key={index}>
+                <span
+                  style={{
+                    fontSize: "1.5rem",
+                    color: "#622243",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {ticket.brandName}
+                </span>
+                <div className={styles.allticket_subele}>
+                  <span>From : {ticket.starting}</span>
+                  <span>To : {ticket.destination}</span>
+                </div>
+                <div className={styles.allticket_subele}>
+                  <span>
+                    Total tickets : {parseInt(ticket.ticketCount._hex)}
+                  </span>
+                  <span>
+                    Remaining tickets : {parseInt(ticket.ticketRemain._hex)}
+                  </span>
+                </div>
+                <div className={styles.allticket_subele}>
+                  <span>Price : {parseInt(ticket.price._hex)} ETH</span>
+                  <button
+                    onClick={() => {
+                      setBuyTicketModal(!buyTicketModal);
+                      setBrandInfo(ticket);
+                      setId(index);
+                    }}
+                    className={styles.btn}
+                  >
+                    <ImTicket />
+                    <span>Buy</span>
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -49,3 +109,31 @@ const Booking = () => {
 };
 
 export default Booking;
+
+// <div className={styles.container}>
+//   <div className={styles.sub_container}>
+//     <div className={styles.btn_container}>
+//       <div
+//         onClick={() => setActiveBtn("addticket")}
+//         className={`${styles.btn_div} ${
+//           activeBtn === "addticket" ? styles.active_btn_div : ""
+//         }`}
+//       >
+//         <BsPlusCircle />
+//         <span> Add Tickets</span>
+//       </div>
+//       <div
+//         onClick={() => setActiveBtn("allticket")}
+//         className={`${styles.btn_div} ${
+//           activeBtn === "allticket" ? styles.active_btn_div : ""
+//         }`}
+//       >
+//         <BiMinusCircle />
+//         <span>All Tickets</span>
+//       </div>
+//     </div>
+//     {activeBtn === "addticket" && <TicketAdd />}
+//     {/* {activeBtn === "buyticket" && <TicketBuy />} */}
+//     {activeBtn === "allticket" && <AllTickets />}
+//   </div>
+// </div>;

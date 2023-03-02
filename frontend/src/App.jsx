@@ -9,6 +9,7 @@ import Footer from "./Components/Footer/Footer";
 import Profile from "./Components/Profile/Profile";
 import Tracking from "./Components/Tracking/Tracking"
 import BookingPage from "./pages/BookingPage";
+import TransactionsPage from "./pages/TransactionsPage";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/booking" element={<BookingPage />} />
         <Route path="/tracking" element={<Tracking />} />
+        <Route path="/transaction" element={<TransactionsPage />} />
       </Routes>
       <Footer />
     </React.Fragment>

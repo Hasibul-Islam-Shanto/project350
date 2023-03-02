@@ -17,6 +17,7 @@ contract Ticketing {
  struct Transaction {
      string brandName;
      address buyer;
+     address seller;
      uint paid;
      uint quantity;
  }
@@ -38,17 +39,17 @@ contract Ticketing {
    events.push(Event(msg.sender, brandName, starting, destination, date, price, ticketCount, ticketCount));
  }
 
- function buyTicket(uint id, uint quantity) external payable {
+ function buyTicket(uint id, uint quantity, uint amount) external payable {
    require(events[id].date!=0,"Event does not exist");
    require(events[id].date>block.timestamp,"Event has already occured");
    require(quantity>0, "Count cannot be zero");
    require(quantity<5, "You cannot buy more than 4 tickets");
    Event storage _event = events[id];
-   require(msg.value==(_event.price*quantity),"Ethere is not enough");
+  //  require(msg.value* 1 ether ==(_event.price*quantity),"Ethere is not enough");
    require(_event.ticketRemain>=quantity,"Not enough tickets");
    _event.ticketRemain-=quantity;
    tickets[msg.sender][id]+=quantity;
-   transactions.push(Transaction(_event.brandName, msg.sender, msg.value, quantity));
+   transactions.push(Transaction(_event.brandName, msg.sender,_event.organizer, amount, quantity));
    owner.transfer(msg.value);
  }
 

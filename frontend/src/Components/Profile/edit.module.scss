@@ -8,7 +8,6 @@
   top: 0;
   z-index: 50;
   background-color: rgba(0, 0, 0, 0.6);
-  transition: 1s ease-in-out;
   .edit_div {
     height: 600px;
     width: 500px;
@@ -22,7 +21,7 @@
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      font-size: 1.8rem;
+      font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
     }

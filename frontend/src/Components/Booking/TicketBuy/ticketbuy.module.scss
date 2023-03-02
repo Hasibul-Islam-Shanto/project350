@@ -1,43 +1,57 @@
-.ticketbuy {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 1rem;
-    .edit_ele {
+.ticketbuy_main {
+  width: 500px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: .5rem;
+  .close_modal {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .ticketbuy {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 0.2rem;
-    .input_name {
-      font-size: 1rem;
-      margin-left: 1rem;
-      color: #6a2e4d;
-    }
-    .edit_input {
-      width: 88%;
-      outline: none;
-      padding: 12px 15px;
-      border: 1px solid #e1e1e1;
-      border-radius: 5px;
-      margin: 8px;
-      color: #6a2e4d;
-      font-size: 0.9rem;
-      &:focus {
-        border: 1px solid #6a2e4d;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1rem;
+    .edit_ele {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 0.2rem;
+      .input_name {
+        font-size: 1rem;
+        margin-left: 1rem;
+        color: #6a2e4d;
+      }
+      .edit_input {
+        width: 88%;
+        outline: none;
+        padding: 12px 15px;
+        border: 1px solid #e1e1e1;
+        border-radius: 5px;
+        margin: 8px;
+        color: #6a2e4d;
+        font-size: 0.9rem;
+        &:focus {
+          border: 1px solid #6a2e4d;
+        }
       }
     }
-  }
-  .btn {
-    padding: 8px 35px;
-    outline: none;
-    border: none;
-    background-color: #6a2e4d;
-    color: #fff;
-    border-radius: 3px;
-    margin-top: 12px;
+    .btn {
+      padding: 8px 35px;
+      outline: none;
+      border: none;
+      background-color: #6a2e4d;
+      color: #fff;
+      border-radius: 3px;
+      margin-top: 5px;
+    }
   }
 }
