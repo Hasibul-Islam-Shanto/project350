@@ -1,26 +1,32 @@
-.imgSection {
-    height: 400px;
-    background-image: url('../../../public/images/train.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    z-index: 1;
-}
-
-.imgSection::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
+.about {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-family: "Roboto";
+  .imgDiv {
+    height: 40vh;
     width: 100%;
-    height: 100%;
-    background: #003580;
-    opacity: .7;
-    z-index: -1;
-}
-
-
-
-.heading {
-    color: red;
+    img {
+      width: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100%;
+    }
+  }
+  .make_opacity {
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    background-color: #003580;
+    opacity: 0.75;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

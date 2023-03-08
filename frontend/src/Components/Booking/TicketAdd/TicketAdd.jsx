@@ -85,7 +85,9 @@ const TicketAdd = ({ setAddTicketModal }) => {
               name="date"
               value={addTickets.date}
               onChange={onvalueChange}
-              className={styles.edit_input}
+              className={
+                styles.edit_i0x57C58591d1b0e163bbc1701576F6e0C52Bc48fE3nput
+              }
             />
           </label>
           <label className={styles.edit_ele}>

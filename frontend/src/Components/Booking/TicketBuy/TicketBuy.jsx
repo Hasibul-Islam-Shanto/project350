@@ -3,7 +3,7 @@ import styles from "./ticketbuy.module.scss";
 import { MdClear } from "react-icons/md";
 import { useContext } from "react";
 import { TicketingContext } from "../../../Context/TicketingContext";
-const TicketBuy = ({ setBuyTicketModal, brandInfo, id }) => {
+const TicketBuy = ({ setBuyTicketModal, brandInfo, id, ticketPrice }) => {
   const { buyTickets } = useContext(TicketingContext);
   const [buyTicket, setBuyTicket] = useState({
     id: id,
@@ -19,7 +19,15 @@ const TicketBuy = ({ setBuyTicketModal, brandInfo, id }) => {
     });
   };
   const ticketBuy = () => {
-    buyTickets(buyTicket);
+    if (
+      ticketPrice * parseInt(buyTicket.numberOfTicket) ===
+      parseInt(buyTicket.amount)
+    ) {
+      buyTickets(buyTicket);
+    } else {
+      alert("You don't give actual amount.");
+    }
+
     setBuyTicket({ numberOfTicket: "", amount: "" });
     setBuyTicketModal(false);
   };

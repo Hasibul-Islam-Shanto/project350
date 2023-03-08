@@ -6,7 +6,7 @@ const { ethereum } = window;
 
 // Create contract for accessing in the abi file.....
 const createEthereumContract = () => {
-  const contractAddress = "0xD4b3094c643887bc41226EBEdC418271b60B69Fb";
+  const contractAddress = "0x9778cc48668BD074b4E8b88632965F52a8AB2B1f";
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
   const transactionsContract = new ethers.Contract(
@@ -23,23 +23,41 @@ const TicketingProvider = ({ children }) => {
   const [account, setAccount] = useState();
   const [allTickets, setAllTickets] = useState([]);
   const [allTransactions, setAllTransactions] = useState([]);
+  const [userProfile, setUserProfile] = useState([]);
+  const [transactHash, setTransactHash] = useState("");
 
   // connnection metamask.....
   const connectMetaMask = async () => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
+      window.ethereum.on("accountsChanged", () => {
+        window.location.reload();
+      });
       const accounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
       console.log(accounts);
       setAccount(accounts[0]);
-      // window.location.reload()
     } catch (error) {
       console.log(error);
       throw new Error("No ethereum object");
     }
   };
-
+  // Create Profile...........
+  const CreateNewProfile = async (data) => {
+    console.log(data);
+    const { name, email, phone,pic } = data;
+    const GetContract = createEthereumContract();
+    await GetContract.createProfile(account, name, email, phone,pic);
+  };
+  // get profile data.......
+  const GetUserProfile = async () => {
+    const GetContract = createEthereumContract();
+    console.log(account);
+    const res = await GetContract.getProfile(account);
+    setUserProfile(res);
+    console.log(res);
+  };
   // Buy tickets
   const buyTickets = async (data) => {
     console.log(data);
@@ -75,14 +93,6 @@ const TicketingProvider = ({ children }) => {
     price,
     ticketCount,
   }) => {
-    console.log(
-      brandName,
-      startingPoint,
-      destination,
-      date,
-      price,
-      ticketCount
-    );
     const conDate = new Date(date);
     const GetContract = createEthereumContract();
     const AddEvent = await GetContract.createEvent(
@@ -94,12 +104,12 @@ const TicketingProvider = ({ children }) => {
       ticketCount
     );
     await AddEvent.wait();
+    setTransactHash(AddEvent.hash);
   };
   // get all the transactions...
   const getAllTransactions = async () => {
     const GetContract = createEthereumContract();
     const res = await GetContract.getTransactions();
-    console.log(res);
     setAllTransactions(res);
   };
 
@@ -107,14 +117,13 @@ const TicketingProvider = ({ children }) => {
     const GetContract = createEthereumContract();
     const res = await GetContract.getEvents();
     setAllTickets(res);
-    console.log(res);
   };
 
   useEffect(() => {
     connectMetaMask();
-    //   createEthereumContract();
     //   getAllEvents();
     getAllTransactions();
+    GetUserProfile();
   }, []);
 
   return (
@@ -128,6 +137,10 @@ const TicketingProvider = ({ children }) => {
         buyTickets,
         allTransactions,
         getAllTransactions,
+        CreateNewProfile,
+        GetUserProfile,
+        userProfile,
+        transactHash,
       }}
     >
       {children}

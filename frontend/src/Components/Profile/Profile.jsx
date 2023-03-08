@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EditModal from "./EditModal";
 import styles from "./profile.module.scss";
 import { useContext } from "react";
 import { TicketingContext } from "../../Context/TicketingContext";
 
 const Profile = () => {
-  const { account } = useContext(TicketingContext);
+  const { account, GetUserProfile, userProfile } = useContext(TicketingContext);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [profileData, setProfileData] = useState({
     name: "",
     email: "",
     phone: "",
+    pic: "",
   });
+
+  useEffect(() => {
+    GetUserProfile();
+  }, [account]);
+  console.log(userProfile);
   return (
     <React.Fragment>
       <div className={styles.profile}>
@@ -23,18 +29,11 @@ const Profile = () => {
             Profile
           </h1>
         </div>
-
-        <div className={styles.account_div}>
-          <p>
-            Account : <span>{account}</span>
-          </p>
-        </div>
-
-        {/* <div className={styles.profileDetails}>
+        <div className={styles.profileDetails}>
           <div className={styles.profile_subdiv}>
             <div className={styles.profile_left}>
               <img
-                src="/profile.jpg"
+                src={`https://gateway.pinata.cloud/ipfs/${userProfile.pic}`}
                 alt="profile"
                 className={styles.profile_img}
               />
@@ -42,19 +41,19 @@ const Profile = () => {
             <div className={styles.profile_right}>
               <div className={styles.profile_data}>
                 <h3>Account :</h3>
-                <p>123456789</p>
+                <p>{account}</p>
               </div>
               <div className={styles.profile_data}>
-                <h3>Name :</h3>
-                <p>{profileData.name} </p>
+                <h3>Name : </h3>
+                <p>{userProfile.name} </p>
               </div>
               <div className={styles.profile_data}>
                 <h3>Email :</h3>
-                <p>{profileData.email}</p>
+                <p>{userProfile.email}</p>
               </div>
               <div className={styles.profile_data}>
                 <h3>Phone :</h3>
-                <p>{profileData.phone}</p>
+                <p>{userProfile.phone}</p>
               </div>
               <button
                 onClick={() => setOpenEditModal(!openEditModal)}
@@ -64,7 +63,7 @@ const Profile = () => {
               </button>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
       {openEditModal && (
         <EditModal

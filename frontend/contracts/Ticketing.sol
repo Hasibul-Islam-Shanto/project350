@@ -3,17 +3,23 @@ pragma solidity >=0.5.0 <0.9.0;
 
 
 contract Ticketing {
+
+ address payable owner;
+mapping(address=>mapping(uint=>uint)) public tickets;
+
+// Create Structure for Event.........
  struct Event{
    address organizer;
    string brandName;
    string starting;
    string destination;
-   uint date; //0 1 2
+   uint date;
    uint price;
-   uint ticketCount;  //1 sec  0.5 sec
+   uint ticketCount;
    uint ticketRemain;
  }
 
+// Create Structure for Transactions......
  struct Transaction {
      string brandName;
      address buyer;
@@ -22,16 +28,28 @@ contract Ticketing {
      uint quantity;
  }
 
+// Create Structure for Profile..................
+struct Profile {
+    address userAccount;
+    string name;
+    string email;
+    string phone;
+    string pic;
+}
 
- Event[] public events;
- mapping(address=>mapping(uint=>uint)) public tickets;
- Transaction[] public transactions;
- address payable owner;
 
+// Defining the owner in the deploy time.........
  constructor() {
      owner = payable(msg.sender);
  }
- 
+
+// Creating Structure arrays.......
+Event[] public events;
+Profile[] public profiles;
+Transaction[] public transactions;
+
+
+//Create a new Events..........
  function createEvent(string memory brandName, string memory starting, string memory destination, uint date, uint price, uint ticketCount) external{
    require(date>block.timestamp,"You can organize event for future date");
    require(ticketCount>0,"You can organize event only if you create more than 0 tickets");
@@ -39,13 +57,13 @@ contract Ticketing {
    events.push(Event(msg.sender, brandName, starting, destination, date, price, ticketCount, ticketCount));
  }
 
+// Buying a ticket and make the transactions.........
  function buyTicket(uint id, uint quantity, uint amount) external payable {
    require(events[id].date!=0,"Event does not exist");
    require(events[id].date>block.timestamp,"Event has already occured");
    require(quantity>0, "Count cannot be zero");
    require(quantity<5, "You cannot buy more than 4 tickets");
    Event storage _event = events[id];
-  //  require(msg.value* 1 ether ==(_event.price*quantity),"Ethere is not enough");
    require(_event.ticketRemain>=quantity,"Not enough tickets");
    _event.ticketRemain-=quantity;
    tickets[msg.sender][id]+=quantity;
@@ -60,4 +78,23 @@ contract Ticketing {
  function getTransactions() public view returns(Transaction[] memory) {
      return transactions;
  }
+
+ function createProfile(address _userAccount, string memory _name, string memory _email, string memory _phone,string memory _pic) public{
+     profiles.push(Profile(_userAccount,_name, _email, _phone,_pic));
+ }
+
+ function allProfiles()public view returns(Profile[] memory){
+     return profiles;
+
+ }
+
+ function getProfile(address _userAccount) public view returns(Profile memory){
+     for(uint i=0; i<profiles.length; i++){
+         if(profiles[i].userAccount == _userAccount){
+             return profiles[i];
+         }
+     }
+    revert("Struct not found");
+ }
+
 }

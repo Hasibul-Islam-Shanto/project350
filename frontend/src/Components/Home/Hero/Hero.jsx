@@ -97,7 +97,10 @@ const Hero = () => {
               </div>
             ))}
           </div>
-
+          <div className={styles.form_div}>
+            <div></div>
+            
+          </div>
         </div>
       </div>
     </React.Fragment>

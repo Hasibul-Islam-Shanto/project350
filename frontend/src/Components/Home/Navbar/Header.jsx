@@ -12,26 +12,21 @@ const navItems = [
   },
   {
     id: 2,
-    title: "About",
-    link: "/about",
-  },
-  {
-    id: 3,
     title: "Booking",
     link: "/booking",
   },
   {
-    id: 4,
+    id: 3,
     title: "Transaction",
     link: "/transaction",
   },
   {
-    id: 5,
+    id: 4,
     title: "Tracking",
     link: "/tracking",
   },
   {
-    id: 6,
+    id: 5,
     title: "Profile",
     link: "/profile",
   },

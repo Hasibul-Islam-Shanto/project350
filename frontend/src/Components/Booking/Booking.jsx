@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import styles from "./booking.module.scss";
 import { BsPlusCircle } from "react-icons/bs";
@@ -9,15 +10,16 @@ import TicketAdd from "./TicketAdd/TicketAdd";
 import TicketBuy from "./TicketBuy/TicketBuy";
 
 const Booking = () => {
-  const { allTickets, getAllEvents } = useContext(TicketingContext);
+  const { allTickets, getAllEvents, transactHash } =
+    useContext(TicketingContext);
   const [addTicketModal, setAddTicketModal] = useState(false);
   const [buyTicketModal, setBuyTicketModal] = useState(false);
   const [id, setId] = useState();
+  const [ticketPrice, setTicketPrice] = useState(0)
   const [brandInfo, setBrandInfo] = useState({});
-  console.log(allTickets);
   useEffect(() => {
     getAllEvents();
-  }, []);
+  }, [transactHash]);
   return (
     <React.Fragment>
       {addTicketModal && (
@@ -31,6 +33,7 @@ const Booking = () => {
             setBuyTicketModal={setBuyTicketModal}
             brandInfo={brandInfo}
             id={id}
+            ticketPrice={ticketPrice}
           />
         </Modal>
       )}
@@ -92,6 +95,7 @@ const Booking = () => {
                       setBuyTicketModal(!buyTicketModal);
                       setBrandInfo(ticket);
                       setId(index);
+                      setTicketPrice(parseInt(ticket.price._hex));
                     }}
                     className={styles.btn}
                   >
