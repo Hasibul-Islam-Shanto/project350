@@ -6,7 +6,7 @@ const { ethereum } = window;
 
 // Create contract for accessing in the abi file.....
 const createEthereumContract = () => {
-  const contractAddress = "0x551f4183A567Ec232FAbD2be66F882A30ab03FCc";
+  const contractAddress = "0x8a6cd2371125DECE41c9E187fdaE46111da15ec9";
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
   const transactionsContract = new ethers.Contract(
