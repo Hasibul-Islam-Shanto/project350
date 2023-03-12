@@ -20,6 +20,7 @@ const Booking = () => {
   useEffect(() => {
     getAllEvents();
   }, [transactHash]);
+  console.log(allTickets);
   return (
     <React.Fragment>
       {addTicketModal && (
