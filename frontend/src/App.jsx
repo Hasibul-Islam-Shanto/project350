@@ -9,6 +9,7 @@ import Profile from "./Components/Profile/Profile";
 import Tracking from "./Components/Tracking/Tracking"
 import BookingPage from "./pages/BookingPage";
 import TransactionsPage from "./pages/TransactionsPage";
+import TrainETicketPDF from "./Components/TicketPDF/TicketPdf";
 
 const App = () => {
   return (
@@ -24,6 +25,16 @@ const App = () => {
         <Route path="/transaction" element={<TransactionsPage />} />
       </Routes>
       <Footer />
+      {/* <TrainETicketPDF
+        trainName="Express Train"
+        departureTime="10:00 AM"
+        arrivalTime="12:00 PM"
+        source="New York"
+        destination="Boston"
+        passengerName="John Smith"
+        seatNumber="A12"
+        fare="$50"
+      /> */}
     </React.Fragment>
   );
 };
