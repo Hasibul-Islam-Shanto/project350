@@ -81,7 +81,7 @@ const TicketAdd = ({ setAddTicketModal }) => {
           <label className={styles.edit_ele}>
             <span className={styles.input_name}>Date</span>
             <input
-              type="date"
+              type="datetime-local"
               name="date"
               value={addTickets.date}
               onChange={onvalueChange}

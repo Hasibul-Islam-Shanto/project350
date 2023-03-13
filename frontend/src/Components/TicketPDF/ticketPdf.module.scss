@@ -1,0 +1,15 @@
+.pdf_container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  .btn {
+    margin-top: 1rem;
+    background-color: #6a2e4d;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+}

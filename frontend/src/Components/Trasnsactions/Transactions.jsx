@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import styles from "./transactions.module.scss";
 import { useContext } from "react";
 import { TicketingContext } from "../../Context/TicketingContext";
+import TrainETicketPDF from "../TicketPDF/TicketPdf";
 const Transactions = () => {
-  const { allTransactions, getAllTransactions } = useContext(TicketingContext);
+  const { allTransactions, getAllTransactions, account } =
+    useContext(TicketingContext);
 
   useEffect(() => {
     getAllTransactions();
@@ -40,14 +42,27 @@ const Transactions = () => {
                   {transact.brandName}
                 </span>
                 <div className={styles.allticket_subele_user}>
-                  {/* <span>From : {transact.starting}</span> */}
                   <span>From : {transact.buyer}</span>
                   <span>To : {transact.seller}</span>
                 </div>
-
+                <div className={styles.allticket_subele}>
+                  <span>Source : {transact.source}</span>
+                  <span>Destination : {transact.destination}</span>
+                </div>
                 <div className={styles.allticket_subele}>
                   <span>Price : {parseInt(transact.paid._hex)} ETH</span>
                   <span>Quantity : {parseInt(transact.quantity._hex)}</span>
+                </div>
+                <div className={styles.allticket_subele}>
+                  <span>
+                    Journey Date :
+                    {new Date(parseInt(transact.jounryDate._hex)).getDate()}/
+                    {new Date(parseInt(transact.jounryDate._hex)).getMonth()}/
+                    {new Date(parseInt(transact.jounryDate._hex)).getFullYear()}
+                  </span>
+                </div>
+                <div>
+                  <TrainETicketPDF transact={transact} />
                 </div>
               </div>
             ))}

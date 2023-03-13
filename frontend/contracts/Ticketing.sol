@@ -26,6 +26,8 @@ contract Ticketing {
         uint256 quantity;
         uint256 jounryDate;
         uint256 issueDate;
+        string source;
+        string destination;
     }
 
     // Create Structure for Profile..................
@@ -101,7 +103,9 @@ contract Ticketing {
                 amount,
                 quantity,
                 _event.date,
-                block.timestamp
+                block.timestamp,
+                 _event.starting,
+                _event.destination
             )
         );
         owner.transfer(msg.value);
